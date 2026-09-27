@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroPet Pixel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="background-orb orb-1"></div>
+<div class="background-orb orb-2"></div>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">✦</div>
+            <div>
+                <strong>NeuroPet</strong>
+                <span>AI COMPANION</span>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-item active" data-page="home"><span>🏠</span><label>Дом</label></button>
+            <button class="nav-item" data-page="play"><span>🎮</span><label>Игры</label></button>
+            <button class="nav-item" data-page="shop"><span>🛍️</span><label>Магазин</label></button>
+            <button class="nav-item" data-page="profile"><span>👤</span><label>Питомец</label></button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="coin-box"><span>🪙</span><strong id="coins">250</strong></div>
+            <button class="settings-button" onclick="showNotification('Настройки скоро появятся ⚙️')">⚙️</button>
+        </div>
+    </aside>
+
+    <main>
+        <header class="topbar">
+            <div>
+                <div class="greeting" id="greeting">Добрый вечер</div>
+                <h1>Твой питомец ждёт тебя 👋</h1>
+            </div>
+            <div class="top-actions">
+                <div class="level"><span>LVL</span><strong id="level">1</strong></div>
+                <div class="avatar-mini">🐾</div>
+            </div>
+        </header>
+
+        <section class="page active-page" id="home">
+            <div class="dashboard">
+
+                <div class="pet-card">
+                    <div class="pet-card-top">
+                        <div>
+                            <span class="small-label">ТВОЙ AI-ПИТОМЕЦ</span>
+                            <h2 id="petName">Мико</h2>
+                            <p id="petMood">Сегодня Мико чувствует себя отлично!</p>
+                        </div>
+                        <button class="more-button" onclick="showNotification('Мико посмотрел на тебя 👀')">⋯</button>
+                    </div>
+
+                    <div class="pet-stage" id="petStage">
+                        <div class="pet-aura"></div>
+                        <div class="pixel-shadow"></div>
+
+                        <div class="pixel-pet-wrap" id="petWrap" title="Нажми на питомца">
+                            <img src="pet.png" class="pixel-pet" id="pet" alt="Pixel AI Pet">
+                            <div class="pixel-particle p1">✦</div>
+                            <div class="pixel-particle p2">•</div>
+                            <div class="pixel-particle p3">✦</div>
+                        </div>
+
+                        <div class="pet-status" id="petStatus">✨ Рад тебя видеть!</div>
+                    </div>
+
+                    <div class="xp-section">
+                        <div class="xp-text"><span>Опыт</span><strong><span id="xp">35</span> / 100 XP</strong></div>
+                        <div class="xp-bar"><div id="xpBar"></div></div>
+                    </div>
+
+                    <div class="pet-actions">
+                        <button onclick="feedPet()"><span>🍎</span><small>Покормить</small></button>
+                        <button onclick="washPet()"><span>🛁</span><small>Помыть</small></button>
+                        <button onclick="playWithPet()"><span>🎾</span><small>Играть</small></button>
+                        <button onclick="sleepPet()"><span>😴</span><small>Спать</small></button>
+                    </div>
+                </div>
+
+                <div class="right-column">
+
+                    <div class="glass-card">
+                        <div class="card-title"><h3>Состояние</h3><span>● LIVE</span></div>
+
+                        <div class="stat"><div class="stat-info"><span>🍗 Сытость</span><strong id="foodValue">82%</strong></div><div class="stat-bar"><div id="foodBar" class="food"></div></div></div>
+                        <div class="stat"><div class="stat-info"><span>❤️ Здоровье</span><strong id="healthValue">95%</strong></div><div class="stat-bar"><div id="healthBar" class="health"></div></div></div>
+                        <div class="stat"><div class="stat-info"><span>😊 Настроение</span><strong id="moodValue">91%</strong></div><div class="stat-bar"><div id="moodBar" class="mood"></div></div></div>
+                        <div class="stat"><div class="stat-info"><span>⚡ Энергия</span><strong id="energyValue">74%</strong></div><div class="stat-bar"><div id="energyBar" class="energy"></div></div></div>
+                    </div>
+
+                    <div class="glass-card chat-card">
+                        <div class="card-title">
+                            <div><h3>💬 AI-питомец</h3><span class="online">● онлайн</span></div>
+                            <span>AI</span>
+                        </div>
+
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message pet-message">Привет! Я рад тебя видеть 🐾</div>
+                        </div>
+
+                        <div class="chat-input">
+                            <input id="chatInput" type="text" placeholder="Напиши Мико..." maxlength="100">
+                            <button onclick="sendMessage()">➤</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quests-section">
+                <div class="section-heading">
+                    <div><span>ПРОГРЕСС</span><h2>Задания на сегодня</h2></div>
+                    <button onclick="showNotification('Все задания обновятся завтра 🌙')">Все задания</button>
+                </div>
+
+                <div class="quest-grid">
+                    <div class="quest"><div class="quest-icon">🍎</div><div class="quest-info"><strong>Покормить питомца</strong><span>+20 XP</span></div><div class="quest-check" id="questFood">0/1</div></div>
+                    <div class="quest"><div class="quest-icon">🎾</div><div class="quest-info"><strong>Поиграть вместе</strong><span>+30 XP</span></div><div class="quest-check" id="questPlay">0/1</div></div>
+                    <div class="quest"><div class="quest-icon">💬</div><div class="quest-info"><strong>Поговорить с Мико</strong><span>+15 XP</span></div><div class="quest-check" id="questChat">0/1</div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="play">
+            <div class="page-header"><span>РАЗВЛЕЧЕНИЯ</span><h1>Игровая зона 🎮</h1><p>Играй вместе с питомцем и получай монеты.</p></div>
+            <div class="games-grid">
+                <div class="game-card" onclick="startMiniGame('memory')"><div class="game-image purple">🧠</div><div class="game-content"><h3>Memory</h3><p>Проверь свою память</p><button>Играть →</button></div></div>
+                <div class="game-card" onclick="startMiniGame('catch')"><div class="game-image blue">⭐</div><div class="game-content"><h3>Поймай звезду</h3><p>Собери как можно больше</p><button>Играть →</button></div></div>
+                <div class="game-card" onclick="startMiniGame('ball')"><div class="game-image orange">🎾</div><div class="game-content"><h3>Мячик</h3><p>Поиграй с Мико</p><button>Играть →</button></div></div>
+            </div>
+        </section>
+
+        <section class="page" id="shop">
+            <div class="page-header"><span>МАГАЗИН</span><h1>Лавка питомца 🛍️</h1><p>Покупай еду, игрушки и предметы для комнаты.</p></div>
+            <div class="shop-grid">
+                <div class="shop-item"><div class="item-image">🍎</div><h3>Яблоко</h3><p>Восстанавливает сытость</p><button onclick="buyItem('apple',20)">🪙 20</button></div>
+                <div class="shop-item"><div class="item-image">🍕</div><h3>Пицца</h3><p>Сильно повышает настроение</p><button onclick="buyItem('pizza',45)">🪙 45</button></div>
+                <div class="shop-item"><div class="item-image">🎾</div><h3>Мячик</h3><p>Игрушка для питомца</p><button onclick="buyItem('ball',80)">🪙 80</button></div>
+                <div class="shop-item"><div class="item-image">🧸</div><h3>Игрушка</h3><p>Мико будет счастлив</p><button onclick="buyItem('toy',120)">🪙 120</button></div>
+                <div class="shop-item"><div class="item-image">🌱</div><h3>Растение</h3><p>Украшение комнаты</p><button onclick="buyItem('plant',150)">🪙 150</button></div>
+                <div class="shop-item"><div class="item-image">🌈</div><h3>Радуга</h3><p>Редкий предмет</p><button onclick="buyItem('rainbow',300)">🪙 300</button></div>
+            </div>
+        </section>
+
+        <section class="page" id="profile">
+            <div class="profile-layout">
+                <div class="profile-pet">
+                    <div class="profile-pet-circle"><img src="pet.png" alt="Питомец"></div>
+                    <h1 id="profileName">Мико</h1>
+                    <p>Твой цифровой компаньон</p>
+                    <button onclick="renamePet()">✏️ Переименовать</button>
+                </div>
+
+                <div class="profile-info">
+                    <div class="profile-stat"><span>Уровень</span><strong id="profileLevel">1</strong></div>
+                    <div class="profile-stat"><span>Всего XP</span><strong id="profileXP">35</strong></div>
+                    <div class="profile-stat"><span>Монеты</span><strong id="profileCoins">250</strong></div>
+                    <div class="profile-stat"><span>Дней вместе</span><strong id="daysTogether">1</strong></div>
+                </div>
+            </div>
+
+            <div class="personality-card">
+                <span>🧠 AI PERSONALITY</span>
+                <h2>Характер Мико</h2>
+                <p>Мико постепенно изучает тебя и формирует собственный характер на основе ваших взаимодействий.</p>
+                <div class="personality-tags"><span>😸 Любопытный</span><span>💖 Дружелюбный</span><span>🎮 Игровой</span><span>🧠 Умный</span></div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<div class="notification" id="notification"><span>✨</span><p id="notificationText">Готово!</p></div>
+
+<div class="modal" id="gameModal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeGame()">×</button>
+        <div id="gameContent"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
